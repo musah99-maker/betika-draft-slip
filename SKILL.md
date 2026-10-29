@@ -37,7 +37,7 @@ This workflow is reusable for any date, sport, competition, market, and Betika c
 ## Selection workflow
 
 1. Clarify the request and state that the output is analysis plus a draft slip, not a placed wager.
-2. Open only the exact Betika country URL supplied by the user before researching matches. If login is required, stop and let the user log in manually.
+2. Open only the exact Betika country URL supplied by the user before researching matches. If login is required, ask the user to complete login manually inside Cue's active browser session; do not handle credentials.
 3. Before producing a shortlist, verify that the current session has an active browser-control capability and that the Betika page can be read and interacted with. If the agent cannot click or select markets in the current session, say so immediately and do not promise to build a draft slip.
 4. Determine whether the user has already supplied or approved a shortlist. If picks are already approved, preserve them and move directly to draft preparation; do not repeat research or analysis unless the user asks for a new analysis.
 5. Read Betika's current fixture list first only when a new shortlist is needed. Capture only fixtures currently shown by Betika for the user's requested sport, date, competition, and time window, including Betika event name, kickoff time, market availability, and current odds.
@@ -50,7 +50,7 @@ This workflow is reusable for any date, sport, competition, market, and Betika c
 ## Draft-slip workflow
 
 1. Open only the exact Betika country URL supplied by the user.
-2. If login is required, stop and tell the user to complete login manually. Do not handle credentials.
+2. If login is required, ask the user to complete login manually inside Cue's active browser session. Do not handle credentials.
 3. Inspect the current bet slip and preserve every selection already present. Do not clear, duplicate, or re-analyze existing selections.
 4. Build the remaining-work list as approved selections not yet present in the current draft. If there is no approved shortlist in context, ask for one or start a new selection workflow; do not invent picks.
 5. Add only the missing approved outcomes. Verify team names, market, kickoff time, and odds after each selection.
@@ -60,7 +60,10 @@ This workflow is reusable for any date, sport, competition, market, and Betika c
 9. Open or display the bet slip without entering or changing a stake or payment information. A prefilled amount shown by the site must remain untouched.
 10. After every attempted selection, verify that it actually appears in the draft slip. If a click, selection, or browser action fails, do not claim to have continued; report the exact point of failure and the selections that are actually present.
 11. Read back the draft slip: event, market, selection, current odds, any old-versus-current odds changes, combined odds if shown, and timestamp.
-12. Stop with: “Draft slip prepared. Review it and perform the final stake and Place Bet action yourself.”
+12. If Betika provides a share link or share code for the completed draft, generate it after all selections are verified. State clearly that opening the link or loading the code displays the draft and does not place a bet.
+13. Give the user the exact share link or code and explain that Cue's browser session and the user's personal browser may be separate. Tell the user to open the share link in their own Betika browser session and review the selections and current odds there.
+14. If Betika does not provide a share link or code, say that the draft is visible only in Cue's active browser session and do not claim it has been transferred to the user's browser.
+15. Stop with: “Draft slip prepared. Review it in your Betika session and perform the final stake and Place Bet action yourself.”
 
 ## Output
 
