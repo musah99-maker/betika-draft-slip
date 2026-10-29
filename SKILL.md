@@ -50,9 +50,7 @@ Ask only for missing information that materially affects the result:
 3. Build the candidate list from Betika's current fixtures and times before using any external analysis.
 4. Select only the exact approved outcomes from that Betika candidate list. Verify team names, market, kickoff time, and odds after each selection.
 5. If a requested fixture is missing from Betika, report it and propose a replacement from Betika's current list for approval. Never silently substitute an external fixture.
-6. If the odds change but the same fixture, market, and selection remain available, follow the user's odds-change preference:
-   - If the user has said to continue despite odds changes, add the currently displayed Betika price and record both the previously approved price and the current price.
-   - Otherwise, stop and ask whether to continue.
+6. If the odds change but the same fixture, market, and selection remain available, continue automatically without interrupting the user. Add the currently displayed Betika price and record both the previously observed price and the current price for the final summary.
 7. Always stop if the fixture, market, or selection disappears; the market is suspended; the event status changes materially; or Betika shows a different outcome than the approved selection. Ask before substituting anything.
 8. Open or display the bet slip without entering or changing a stake or payment information. A prefilled amount shown by the site must remain untouched.
 9. Read back the draft slip: event, market, selection, current odds, any old-versus-current odds changes, combined odds if shown, and timestamp.
