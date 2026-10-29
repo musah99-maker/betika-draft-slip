@@ -35,23 +35,25 @@ Ask only for missing information that materially affects the result:
 ## Selection workflow
 
 1. Clarify the request and state that the output is analysis plus a draft slip, not a placed wager.
-2. Collect current fixture and odds data from authorized public pages or user-provided exports. Record the source URL and UTC timestamp.
-3. Check fixture identity, kickoff time, market status, odds freshness, and suspended or unavailable markets.
-4. Compare relevant form, head-to-head, injuries, lineup news, schedule congestion, home/away performance, and source quality when available. Label missing information.
-5. Separate bookmaker odds from probability estimates. Calculate implied probability as `1 / decimal_odds` and show assumptions for any estimated edge.
-6. Avoid guaranteed language. Provide a short ranked shortlist with reasons, uncertainty, and key failure conditions.
-7. Ask the user to approve the exact shortlist before interacting with Betika. Approval means approval to prepare the draft slip only, never approval to place a bet.
+2. Open only the exact Betika country URL supplied by the user before researching matches. If login is required, stop and let the user log in manually.
+3. Read Betika's current fixture list first. Capture only fixtures currently shown by Betika for the requested sport, date, competition, and time window, including Betika event name, kickoff time, market availability, and current odds.
+4. Treat Betika's live fixture list as the source of truth. Do not begin with external fixture lists, and do not analyze a match that is not currently listed by Betika.
+5. Compare relevant form, head-to-head, injuries, lineup news, schedule congestion, home/away performance, and authorized external sources only for the Betika-listed fixtures. Label missing information.
+6. Separate bookmaker odds from probability estimates. Calculate implied probability as `1 / decimal_odds` and show assumptions for any estimated edge.
+7. Avoid guaranteed language. Provide a ranked shortlist using only Betika-listed fixtures, with reasons, uncertainty, and key failure conditions.
+8. Ask the user to approve the exact shortlist before adding selections. Approval means approval to prepare the draft slip only, never approval to place a bet.
 
 ## Draft-slip workflow
 
 1. Open only the exact Betika country URL supplied by the user.
 2. If login is required, stop and tell the user to complete login manually. Do not handle credentials.
-3. Navigate to the approved fixtures and markets.
-4. Select only the exact approved outcomes. Verify team names, market, kickoff time, and odds after each selection.
-5. If odds change, a market is suspended, or the fixture differs, stop and report the change instead of accepting it automatically.
-6. Open or display the bet slip without entering a stake or payment information.
-7. Read back the draft slip: event, market, selection, odds, combined odds if shown, and timestamp.
-8. Stop with: “Draft slip prepared. Review it and perform the final stake and Place Bet action yourself.”
+3. Build the candidate list from Betika's current fixtures and times before using any external analysis.
+4. Select only the exact approved outcomes from that Betika candidate list. Verify team names, market, kickoff time, and odds after each selection.
+5. If a requested fixture is missing from Betika, report it and propose a replacement from Betika's current list for approval. Never silently substitute an external fixture.
+6. If odds change, a market is suspended, or the fixture differs, stop and report the change instead of accepting it automatically.
+7. Open or display the bet slip without entering a stake or payment information.
+8. Read back the draft slip: event, market, selection, odds, combined odds if shown, and timestamp.
+9. Stop with: “Draft slip prepared. Review it and perform the final stake and Place Bet action yourself.”
 
 ## Output
 
