@@ -36,12 +36,13 @@ Ask only for missing information that materially affects the result:
 
 1. Clarify the request and state that the output is analysis plus a draft slip, not a placed wager.
 2. Open only the exact Betika country URL supplied by the user before researching matches. If login is required, stop and let the user log in manually.
-3. Read Betika's current fixture list first. Capture only fixtures currently shown by Betika for the requested sport, date, competition, and time window, including Betika event name, kickoff time, market availability, and current odds.
-4. Treat Betika's live fixture list as the source of truth. Do not begin with external fixture lists, and do not analyze a match that is not currently listed by Betika.
-5. Compare relevant form, head-to-head, injuries, lineup news, schedule congestion, home/away performance, and authorized external sources only for the Betika-listed fixtures. Label missing information.
-6. Separate bookmaker odds from probability estimates. Calculate implied probability as `1 / decimal_odds` and show assumptions for any estimated edge.
-7. Avoid guaranteed language. Provide a ranked shortlist using only Betika-listed fixtures, with reasons, uncertainty, and key failure conditions.
-8. Ask the user to approve the exact shortlist before adding selections. Approval means approval to prepare the draft slip only, never approval to place a bet.
+3. Before producing a shortlist, verify that the current session has an active browser-control capability and that the Betika page can be read and interacted with. If the agent cannot click or select markets in the current session, say so immediately and do not promise to build a draft slip.
+4. Read Betika's current fixture list first. Capture only fixtures currently shown by Betika for the requested sport, date, competition, and time window, including Betika event name, kickoff time, market availability, and current odds.
+5. Treat Betika's live fixture list as the source of truth. Do not begin with external fixture lists, and do not analyze a match that is not currently listed by Betika.
+6. Compare relevant form, head-to-head, injuries, lineup news, schedule congestion, home/away performance, and authorized external sources only for the Betika-listed fixtures. Label missing information.
+7. Separate bookmaker odds from probability estimates. Calculate implied probability as `1 / decimal_odds` and show assumptions for any estimated edge.
+8. Avoid guaranteed language. Provide a ranked shortlist using only Betika-listed fixtures, with reasons, uncertainty, and key failure conditions.
+9. Ask the user to approve the exact shortlist before adding selections. Approval means approval to prepare the draft slip only, never approval to place a bet.
 
 ## Draft-slip workflow
 
@@ -53,8 +54,9 @@ Ask only for missing information that materially affects the result:
 6. If the odds change but the same fixture, market, and selection remain available, continue automatically without interrupting the user. Add the currently displayed Betika price and record both the previously observed price and the current price for the final summary.
 7. Always stop if the fixture, market, or selection disappears; the market is suspended; the event status changes materially; or Betika shows a different outcome than the approved selection. Ask before substituting anything.
 8. Open or display the bet slip without entering or changing a stake or payment information. A prefilled amount shown by the site must remain untouched.
-9. Read back the draft slip: event, market, selection, current odds, any old-versus-current odds changes, combined odds if shown, and timestamp.
-10. Stop with: “Draft slip prepared. Review it and perform the final stake and Place Bet action yourself.”
+9. After every attempted selection, verify that it actually appears in the draft slip. If a click, selection, or browser action fails, do not claim to have continued; report the exact point of failure and the selections that are actually present.
+10. Read back the draft slip: event, market, selection, current odds, any old-versus-current odds changes, combined odds if shown, and timestamp.
+11. Stop with: “Draft slip prepared. Review it and perform the final stake and Place Bet action yourself.”
 
 ## Output
 
