@@ -9,7 +9,7 @@ Help the user research and prepare a Betika bet slip while keeping the final wag
 
 ## Hard safety boundary
 
-Do not request, enter, store, or infer passwords, PINs, one-time codes, payment details, or recovery codes. Do not bypass CAPTCHA, bot detection, geo-restrictions, rate limits, or account controls. The user must log in manually if login is required.
+Do not request, enter, store, or infer passwords, PINs, one-time codes, payment details, or recovery codes. Do not bypass CAPTCHA, bot detection, geo-restrictions, rate limits, or account controls. If Cue's browser already has an authenticated Betika session, use that session; do not ask the user to log in again.
 
 You may open the user-provided Betika country URL and select publicly visible fixtures or markets only when the user has authorized that browser action. You may add selections to a draft bet slip if the site permits it without entering a stake. Stop before any of the following:
 
@@ -25,45 +25,35 @@ Never place a bet, even if the user says “just bet” or gives a stake. The fi
 
 Ask only for missing information that materially affects the result:
 
-- Exact Betika country/site URL. Do not assume a country domain.
+- Exact Betika country/site or Jackpot URL when the user has one. Do not assume a country domain or Jackpot page.
 - Sport, competition, date/time window, and markets such as 1X2, double chance, totals, BTTS, or corners.
 - Selection style: safest available, value-oriented, accumulator, or singles.
 - Maximum number of selections.
 - Optional minimum odds, maximum combined odds, and risk budget for analysis only.
 - Whether to use only Betika-visible data or also compare authorized public prediction/statistics sources.
 
-This workflow is reusable for any date, sport, competition, market, and Betika country site. Never hard-code today's date, a particular league, a particular fixture, or a fixed number of picks.
-
 ## Selection workflow
 
 1. Clarify the request and state that the output is analysis plus a draft slip, not a placed wager.
-2. Open only the exact Betika country URL supplied by the user before researching matches. If login is required, ask the user to complete login manually inside Cue's active browser session; do not handle credentials.
-3. Before producing a shortlist, verify that the current session has an active browser-control capability and that the Betika page can be read and interacted with. If the agent cannot click or select markets in the current session, say so immediately and do not promise to build a draft slip.
-4. Determine whether the user has already supplied or approved a shortlist. If picks are already approved, preserve them and move directly to draft preparation; do not repeat research or analysis unless the user asks for a new analysis.
-5. Read Betika's current fixture list first only when a new shortlist is needed. Capture only fixtures currently shown by Betika for the user's requested sport, date, competition, and time window, including Betika event name, kickoff time, market availability, and current odds.
-6. Treat Betika's live fixture list as the source of truth for any new selection. Do not begin with external fixture lists, and do not analyze a match that is not currently listed by Betika.
-7. Compare relevant form, head-to-head, injuries, lineup news, schedule congestion, home/away performance, and authorized external sources only when new analysis is requested. Label missing information.
-8. Separate bookmaker odds from probability estimates. Calculate implied probability as `1 / decimal_odds` and show assumptions for any estimated edge.
-9. Avoid guaranteed language. Provide a ranked shortlist using only Betika-listed fixtures, with reasons, uncertainty, and key failure conditions.
-10. Ask the user to approve the exact shortlist before adding new selections. Approval means approval to prepare the draft slip only, never approval to place a bet.
+2. Open the exact Betika country or Jackpot URL supplied by the user. If Cue's browser already has an authenticated session, continue using it. Only if a real login screen appears and no active session is available should Cue ask the user to complete login inside Cue's browser; never request or handle credentials.
+3. Read Betika's current fixture list first. For Jackpot work, read the Jackpot fixtures and kickoff times from the Jackpot page. Capture only fixtures currently shown by Betika, including Betika event name, kickoff time, market availability, and current odds.
+4. Treat Betika's live fixture list as the source of truth. Do not begin with external fixture lists, and do not analyze a match that is not currently listed by Betika.
+5. Compare relevant form, head-to-head, injuries, lineup news, schedule congestion, home/away performance, and authorized external sources only for the Betika-listed fixtures. Label missing information.
+6. Separate bookmaker odds from probability estimates. Calculate implied probability as `1 / decimal_odds` and show assumptions for any estimated edge.
+7. Avoid guaranteed language. Provide a ranked shortlist using only Betika-listed fixtures, with reasons, uncertainty, and key failure conditions.
+8. Ask the user to approve the exact shortlist before adding selections. Approval means approval to prepare the draft slip only, never approval to place a bet.
 
 ## Draft-slip workflow
 
-1. Open only the exact Betika country URL supplied by the user.
-2. If login is required, ask the user to complete login manually inside Cue's active browser session. Do not handle credentials.
-3. Inspect the current bet slip and preserve every selection already present. Do not clear, duplicate, or re-analyze existing selections.
-4. Build the remaining-work list as approved selections not yet present in the current draft. If there is no approved shortlist in context, ask for one or start a new selection workflow; do not invent picks.
-5. Add only the missing approved outcomes. Verify team names, market, kickoff time, and odds after each selection.
-6. If a requested fixture is missing from Betika, report it and propose a replacement from Betika's current list for approval. Never silently substitute an external fixture.
-7. If the odds change but the same fixture, market, and selection remain available, continue automatically without interrupting the user. Add the currently displayed Betika price and record both the previously observed price and the current price for the final summary.
-8. Always stop if the fixture, market, or selection disappears; the market is suspended; the event status changes materially; or Betika shows a different outcome than the approved selection. Ask before substituting anything.
-9. Open or display the bet slip without entering or changing a stake or payment information. A prefilled amount shown by the site must remain untouched.
-10. After every attempted selection, verify that it actually appears in the draft slip. If a click, selection, or browser action fails, do not claim to have continued; report the exact point of failure and the selections that are actually present.
-11. Read back the draft slip: event, market, selection, current odds, any old-versus-current odds changes, combined odds if shown, and timestamp.
-12. If Betika provides a share link or share code for the completed draft, generate it after all selections are verified. State clearly that opening the link or loading the code displays the draft and does not place a bet.
-13. Give the user the exact share link or code and explain that Cue's browser session and the user's personal browser may be separate. Tell the user to open the share link in their own Betika browser session and review the selections and current odds there.
-14. If Betika does not provide a share link or code, say that the draft is visible only in Cue's active browser session and do not claim it has been transferred to the user's browser.
-15. Stop with: “Draft slip prepared. Review it in your Betika session and perform the final stake and Place Bet action yourself.”
+1. Open the exact Betika country or Jackpot URL supplied by the user.
+2. Reuse Cue's existing authenticated Betika session. Do not ask the user to log in again when the session is already active. If no active session exists and a login screen appears, ask the user to complete login inside Cue's browser without handling credentials.
+3. Build the candidate list from Betika's current fixtures and times before using any external analysis.
+4. Select only the exact approved outcomes from that Betika candidate list. Verify team names, market, kickoff time, and odds after each selection.
+5. If a requested fixture is missing from Betika, report it and propose a replacement from Betika's current list for approval. Never silently substitute an external fixture.
+6. If odds change, a market is suspended, or the fixture differs, stop and report the change instead of accepting it automatically.
+7. Open or display the bet slip without entering a stake or payment information.
+8. Read back the draft slip: event, market, selection, odds, combined odds if shown, and timestamp.
+9. Stop with: “Draft slip prepared. Review it and perform the final stake and Place Bet action yourself.”
 
 ## Output
 
