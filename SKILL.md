@@ -9,7 +9,7 @@ Help the user research and prepare a Betika bet slip while keeping the final wag
 
 ## Hard safety boundary
 
-Do not request, enter, store, or infer passwords, PINs, one-time codes, payment details, or recovery codes. Do not bypass CAPTCHA, bot detection, geo-restrictions, rate limits, or account controls. If Cue's browser already has an authenticated Betika session, use that session; do not ask the user to log in again.
+Do not request, enter, store, or infer passwords, PINs, one-time codes, payment details, or recovery codes. Do not bypass CAPTCHA, bot detection, geo-restrictions, rate limits, or account controls. If Cue's browser already has an authenticated Betika session or an open Betika page, use it directly. Do not ask the user to log in again and do not mention saved passwords when the session is already authenticated.
 
 You may open the user-provided Betika country URL and select publicly visible fixtures or markets only when the user has authorized that browser action. You may add selections to a draft bet slip if the site permits it without entering a stake. Stop before any of the following:
 
@@ -25,7 +25,7 @@ Never place a bet, even if the user says “just bet” or gives a stake. The fi
 
 Ask only for missing information that materially affects the result:
 
-- Exact Betika country/site or Jackpot URL when the user has one. Do not assume a country domain or Jackpot page.
+- Exact Betika country/site or Jackpot URL when the user has one. If the user has an authenticated Betika page already open and no URL is provided, use the current page and navigate to its Jackpot section; do not invent a placeholder URL.
 - Sport, competition, date/time window, and markets such as 1X2, double chance, totals, BTTS, or corners.
 - Selection style: safest available, value-oriented, accumulator, or singles.
 - Maximum number of selections.
@@ -35,7 +35,7 @@ Ask only for missing information that materially affects the result:
 ## Selection workflow
 
 1. Clarify the request and state that the output is analysis plus a draft slip, not a placed wager.
-2. Open the exact Betika country or Jackpot URL supplied by the user. If Cue's browser already has an authenticated session, continue using it. Only if a real login screen appears and no active session is available should Cue ask the user to complete login inside Cue's browser; never request or handle credentials.
+2. Use the current open Betika page if it exists and is authenticated. Otherwise open the exact Betika country or Jackpot URL supplied by the user. Navigate to the Jackpot section when the user asks for Jackpot analysis. Only if a real login screen appears and no active session is available should Cue say “No authenticated Betika session is available in this browser” and ask the user to log in inside Cue; never request or handle credentials. Do not claim that a URL is a placeholder unless the user literally supplied placeholder text.
 3. Read Betika's current fixture list first. For Jackpot work, read the Jackpot fixtures and kickoff times from the Jackpot page. Capture only fixtures currently shown by Betika, including Betika event name, kickoff time, market availability, and current odds.
 4. Treat Betika's live fixture list as the source of truth. Do not begin with external fixture lists, and do not analyze a match that is not currently listed by Betika.
 5. Compare relevant form, head-to-head, injuries, lineup news, schedule congestion, home/away performance, and authorized external sources only for the Betika-listed fixtures. Label missing information.
@@ -45,8 +45,8 @@ Ask only for missing information that materially affects the result:
 
 ## Draft-slip workflow
 
-1. Open the exact Betika country or Jackpot URL supplied by the user.
-2. Reuse Cue's existing authenticated Betika session. Do not ask the user to log in again when the session is already active. If no active session exists and a login screen appears, ask the user to complete login inside Cue's browser without handling credentials.
+1. Use the current open Betika page and reuse Cue's existing authenticated session. If no Betika page is open, open the exact country or Jackpot URL supplied by the user. Do not ask the user to log in again when the session is active.
+2. If a login screen appears and no active session exists, report that the current Cue browser has no authenticated Betika session and ask the user to complete login there without handling credentials. Do not mention saved passwords or claim that the user's login must be repeated when an authenticated session is present.
 3. Build the candidate list from Betika's current fixtures and times before using any external analysis.
 4. Select only the exact approved outcomes from that Betika candidate list. Verify team names, market, kickoff time, and odds after each selection.
 5. If a requested fixture is missing from Betika, report it and propose a replacement from Betika's current list for approval. Never silently substitute an external fixture.
